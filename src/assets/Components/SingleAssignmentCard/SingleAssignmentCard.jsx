@@ -66,7 +66,7 @@ const SingleAssignmentCard = ({ assignment, handleDeletedCount, props }) => {
                 <label>
                     <div>
                         <div>
-
+{/* delete button */}
                             <button onClick={() => handleDelete(_id)}
                                 className="bg-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -74,6 +74,8 @@ const SingleAssignmentCard = ({ assignment, handleDeletedCount, props }) => {
 
                             </button>
                         </div>
+
+                        {/* details button */}
                         <div>
                             <Link to={`/details/${_id}`}><button className='bg-white'>
                             <svg
@@ -93,6 +95,7 @@ const SingleAssignmentCard = ({ assignment, handleDeletedCount, props }) => {
                                 </svg>
                             </button></Link>
                         </div>
+                        {/* edit button */}
                         <div>
                             <Link to={`/updateAssignment/${_id}`}><button className='bg-white'>
                                 

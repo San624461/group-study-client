@@ -8,6 +8,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Layout from "../Layout/Layout";
 import UpdateAssignment from "../Pages/UpdateAssignment/UpdateAssignment";
+import Details from "../Pages/Details/Details";
+import { FcEditImage } from "react-icons/fc";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path:'/updateAssignment/:id',
                 element: <UpdateAssignment></UpdateAssignment>,
+                loader: ({params})=>fetch(`http://localhost:5000/createdAssignments/${params.id}`)
+            },{
+                path: '/details/:id',
+                element:<Details></Details>,
                 loader: ({params})=>fetch(`http://localhost:5000/createdAssignments/${params.id}`)
             }
         ]
