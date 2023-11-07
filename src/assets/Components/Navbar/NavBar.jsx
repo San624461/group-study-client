@@ -7,6 +7,7 @@ const NavBar = () => {
             <li>  <NavLink to='/login'>Login</NavLink></li>
             <li>  <NavLink to='/register'>Register</NavLink></li>
             <li>  <NavLink to='/createAssignment'>Create Assignment</NavLink></li>
+            <li>  <NavLink to='/allAssignments'>All Assignment</NavLink></li>
         </div>
     );
 };

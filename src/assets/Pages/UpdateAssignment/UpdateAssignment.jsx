@@ -4,11 +4,11 @@ import Swal from 'sweetalert2'
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../Providers/AuthProvider";
 
-const CreateAssignment = () => {
+const UpdateAssignment = () => {
 
   const {user}= useContext(AuthContext)
 
-  const handleCreateAssignment = e=>{
+  const handleUpdateAssignment = e=>{
     e.preventDefault()
     const form = e.target;
     const title = form.title.value
@@ -45,7 +45,7 @@ const CreateAssignment = () => {
                 if(data.insertedId){
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Product added Successfully',
+                        text: 'Product Updated Successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                       })
@@ -59,7 +59,7 @@ const CreateAssignment = () => {
     <div className='bg-[#160733]'>
   
       <form className="card-body" 
-      onSubmit={handleCreateAssignment}>
+      onSubmit={handleUpdateAssignment}>
       <h1 className='text-purple-400 text-3xl font-bold mt-4'>Create Assignment Now</h1>
       {/* title */}
         <div className="form-control">
@@ -124,4 +124,4 @@ const CreateAssignment = () => {
   );
 };
 
-export default CreateAssignment;
+export default UpdateAssignment;

@@ -7,6 +7,7 @@ import SubmittedAssignment from "../Pages/Submitted Assignments/SubmittedAssignm
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Layout from "../Layout/Layout";
+import UpdateAssignment from "../Pages/UpdateAssignment/UpdateAssignment";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/allAssignments',
-                element: <AllAssignments></AllAssignments>
+                element: <AllAssignments></AllAssignments>,
+                loader: ()=>fetch('http://localhost:5000/createdAssignments')
             },
             {
                 path: '/myAssignments',
@@ -41,6 +43,11 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path:'/updateAssignment/:id',
+                element: <UpdateAssignment></UpdateAssignment>,
+                loader: ({params})=>fetch(`http://localhost:5000/createdAssignments/${params.id}`)
             }
         ]
     }
