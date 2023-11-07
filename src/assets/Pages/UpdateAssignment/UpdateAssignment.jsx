@@ -7,26 +7,26 @@ import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 const UpdateAssignment = () => {
 
-
-    const [startDate, setStartDate] = useState(new Date());
-    const location = useLocation()
-    const navigate = useNavigate()
-const assignments = useLoaderData()
-
-  const {user}= useContext(AuthContext)
+  const [startDate, setStartDate] = useState(new Date());
   
+  const location = useLocation()
+  const navigate = useNavigate()
+  const assignments = useLoaderData()
+
+  const { user } = useContext(AuthContext)
+
   if (!user) {
     return <div>Please log in again</div>;
-}
-  console.log(user.email);
- 
-  const currentUser = user.email
-  const { title,description, thumbnail, fullMarks, level, _id, email ,date} = assignments
-  console.log(email);
+  }
+  // console.log(user.email);
 
-  
-  
-  const handleUpdateAssignment = e=>{
+  const currentUser = user.email
+  const { title, description, thumbnail, fullMarks, level, _id, email, date } = assignments
+  // console.log(email);
+
+
+
+  const handleUpdateAssignment = e => {
     e.preventDefault()
     const form = e.target;
     const title = form.title.value
@@ -35,7 +35,7 @@ const assignments = useLoaderData()
     const thumbnail = form.photo.value;
     const level = form.level.value;
     const date = form.date.value
-  
+
     // console.log(title,description,fullMarks,thumbnail,date,level);
 
     const UpdatedAssignment = {
@@ -45,57 +45,54 @@ const assignments = useLoaderData()
       thumbnail,
       level,
       date,
-     
+
     }
 
-    //send data to the server
-
-
-   
-  // Check if the assignment exists and if the logged-in user's email matches the assignment's email
-  if ( currentUser !== email) {
-    Swal.fire({
-      title: "Access Denied!",
-      text: "You don't have permission to update this assignment.",
-      icon: "error"
-    });
-    return <div>Access Denied</div>;
-  }
-
     
-        fetch(`http://localhost:5000/createdAssignments/${_id}`, {
+
+    if (currentUser !== email) {
+      Swal.fire({
+        title: "Access Denied!",
+        text: "You don't have permission to update this assignment.",
+        icon: "error"
+      });
+      return <div>Access Denied</div>;
+    }
+
+
+    fetch(`http://localhost:5000/createdAssignments/${_id}`, {
       method: 'PUT',
       headers: {
-        'content-type' :'application/json'
+        'content-type': 'application/json'
       },
       body: JSON.stringify(UpdatedAssignment)
     })
-    .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if(data.modifiedCount){
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Assignment Updated Successfully',
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                      })
-                      navigate(location?.state ? location.state : '/allAssignments')
-                }
-                // form.reset()
-            })
-    
-    
-  }
-  
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Assignment Updated Successfully',
+            icon: 'success',
+            confirmButtonText: 'Cool'
+          })
+          navigate(location?.state ? location.state : '/allAssignments')
+        }
+        // form.reset()
+      })
 
+      
+  }
+
+  
   return (
     <div className='bg-[#160733]'>
-  
-      <form className="card-body" 
-      onSubmit={handleUpdateAssignment}>
-      <h1 className='text-purple-400 text-3xl font-bold mt-4'>Update Assignment Now</h1>
-      {/* title */}
+
+      <form className="card-body"
+        onSubmit={handleUpdateAssignment}>
+        <h1 className='text-purple-400 text-3xl font-bold mt-4'>Update Assignment Now</h1>
+        {/* title */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white font-bold">Assignment Title</span>
@@ -107,8 +104,8 @@ const assignments = useLoaderData()
           <label className="label">
             <span className="label-text text-white font-bold">Description</span>
           </label>
-          <input type="text"  placeholder="Write The Description" className="input input-bordered input-info w-full " name="description" defaultValue={description}/>
-          
+          <input type="text" placeholder="Write The Description" className="input input-bordered input-info w-full " name="description" defaultValue={description} />
+
         </div>
 
         {/* Marks */}
@@ -116,14 +113,14 @@ const assignments = useLoaderData()
           <label className="label">
             <span className="label-text text-white font-bold">Marks</span>
           </label>
-          <input type="text" placeholder="Full Marks" className="input input-bordered" required name="marks" defaultValue={fullMarks}/>
+          <input type="text" placeholder="Full Marks" className="input input-bordered" required name="marks" defaultValue={fullMarks} />
         </div>
         {/* Thumbnail */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white font-bold">Thumbnail</span>
           </label>
-          <input type="text" placeholder="Photo URL" className="input input-bordered" required name="photo" defaultValue={thumbnail}/>
+          <input type="text" placeholder="Photo URL" className="input input-bordered" required name="photo" defaultValue={thumbnail} />
         </div>
         {/* Difficult Level */}
         <div className="form-control">
@@ -140,14 +137,14 @@ const assignments = useLoaderData()
         <div className="form-control">
           <label className="label">
             <span className="label-text text-white font-bold">Pick A date</span>
-          
+
           </label>
-          <DatePicker name="date" className="w-full p-2" selected={startDate} onChange={(date) => setStartDate(date)}  defaultValue={date}/>
-          
+          <DatePicker name="date" className="w-full p-2 input" selected={startDate} onChange={(date) => setStartDate(date)} defaultValue={date} />
+
         </div>
 
 
-     
+
         <div className="form-control mt-6">
           <button className="btn 
                 text-white border-none  hover:bg-purple-300

@@ -18,7 +18,7 @@ const CreateAssignment = () => {
     const level = form.level.value;
     const date = form.date.value
     const email = user.email
-    console.log(title,description,fullMarks,thumbnail,date,level);
+    // console.log(title,description,fullMarks,thumbnail,date,level);
 
     const newAssignment = {
       title,
@@ -108,7 +108,7 @@ const CreateAssignment = () => {
             <span className="label-text text-white font-bold">Pick A date</span>
           
           </label>
-          <DatePicker name="date" className="w-full p-2" selected={startDate} onChange={(date) => setStartDate(date)} />
+          <DatePicker name="date" className="w-full p-2 input" selected={startDate} onChange={(date) => setStartDate(date)} />
           
         </div>
 
