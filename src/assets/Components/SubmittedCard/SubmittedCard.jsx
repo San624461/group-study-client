@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Marking from '../../Pages/Marking/Marking';
 
 const SubmittedCard = ({ submittedAssignment }) => {
-    const { pdf, text, email, title, name, status, fullMarks } = submittedAssignment;
+    const { pdf, text, email, title, name, status, fullMarks,_id } = submittedAssignment;
 
     return (
         <div>
@@ -23,10 +25,12 @@ const SubmittedCard = ({ submittedAssignment }) => {
                         <p><span className='text-red-500 font-bold'> Status:</span>{status}</p>
                         <small><span className='text-purple-500 font-bold'>Submitted by</span> : {email}</small>
                       <br />
-                        <button className="btn mt-3 w-full
-                text-white border-none  hover:bg-purple-300
-                bg-gradient-to-r from-[#3940D6]  to-[#7F1D9B]">Give Mark</button>
+                       <Link to={`/marking/${_id}`}>
+                       <button className="btn mt-3 w-full
+                text-wrouhite border-none  hover:bg-purple-300
+                bg-gradient-to-r from-[#3940D6]  to-[#7F1D9B] text-white">Give Mark</button></Link>
                     </div>
+                   
                 </div>
             </div>
         </div>
