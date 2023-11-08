@@ -10,11 +10,14 @@ import Layout from "../Layout/Layout";
 import UpdateAssignment from "../Pages/UpdateAssignment/UpdateAssignment";
 import Details from "../Pages/Details/Details";
 import { FcEditImage } from "react-icons/fc";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import SubmittedAssignments from "../Pages/SubmittedAssignments/SubmittedAssignments";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element:<Layout></Layout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -54,6 +57,10 @@ const router = createBrowserRouter([
                 path: '/details/:id',
                 element:<Details></Details>,
                 loader: ({params})=>fetch(`http://localhost:5000/createdAssignments/${params.id}`)
+            },{
+                path: '/submittedAssignments',
+                element: <SubmittedAssignments></SubmittedAssignments>,
+                loader: ()=>fetch('http://localhost:5000/submittedAssignments')
             }
         ]
     }
