@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             {
                 path:'/allAssignments',
                 element: <AllAssignments></AllAssignments>,
-                loader: ()=>fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments')
+                loader: ()=>fetch('https://group-study-server-dusky.vercel.app/createdAssignments')
             },
             {
                 path: '/myAssignments',
@@ -57,28 +57,28 @@ const router = createBrowserRouter([
             {
                 path:'/updateAssignment/:id',
                 element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
-                loader: ({params})=>fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments/${params.id}`)
+                loader: ({params})=>fetch(`https://group-study-server-dusky.vercel.app/createdAssignments/${params.id}`)
             },{
                 path: '/details/:id',
                 element:<PrivateRoute>
                     <Details></Details>
                 </PrivateRoute>,
-                loader: ({params})=>fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments/${params.id}`)
+                loader: ({params})=>fetch(`https://group-study-server-dusky.vercel.app/createdAssignments/${params.id}`)
             },{
                 path: '/submittedAssignments',
                 element: <PrivateRoute>
                     <SubmittedAssignments></SubmittedAssignments>
                 </PrivateRoute>,
-                loader: ()=>fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments')
+                loader: ()=>fetch('https://group-study-server-dusky.vercel.app/submittedAssignments')
             },{
                 path : '/marking/:id',
                 element: <Marking></Marking>,
-                loader: ({params})=>fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments/${params.id}`)
+                loader: ({params})=>fetch(`https://group-study-server-dusky.vercel.app/submittedAssignments/${params.id}`)
             },
             {
                 path: '/marked',
                 element:<MarkedAssignments></MarkedAssignments>,
-                loader: ()=>fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments')
+                loader: ()=>fetch('https://group-study-server-dusky.vercel.app/submittedAssignments')
             }
         ]
     }

@@ -7,7 +7,7 @@ const NavBar = () => {
 
   const { user, logOut } = useContext(AuthContext)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-// console.log(user.photoURL);
+  // console.log(user.photoURL);
   const handleSignOut = () => {
     logOut()
       .then(res => {
@@ -43,28 +43,33 @@ const NavBar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </button>
-            <ul className="items-stretch hidden space-x-3 lg:flex "  id='sidebar'>
-				<li className="flex">
-					<a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white font-bold text-lg"> <NavLink to="/login">Login</NavLink></a>
-				</li>
-				<li className="flex">
-					<a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 text-white font-bold text-lg"> <NavLink 
-                     className={({ isActive, isPending }) =>
-                     isPending ? "pending" : isActive ? "active" : ""
-                   }
-                    
-                    to="/register">Register</NavLink></a>
-				</li>
-				<li className="flex">
-					<a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 text-white font-bold text-lg">    <NavLink to="/createAssignment">Create Assignment</NavLink></a>
-				</li>
-				<li className="flex">
-					<a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent  text-white font-bold text-lg"> <NavLink to="/allAssignments">All Assignment</NavLink></a>
-				</li>
-				<li className="flex">
-					<a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white font-bold text-lg"> <NavLink to="/submittedAssignments">Submitted Assignment</NavLink></a>
-				</li>
-			</ul>
+            <ul className="items-stretch hidden space-x-3 lg:flex " id='sidebar'>
+              <li className="flex">
+                <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white font-bold text-lg"> <NavLink to="/login">Login</NavLink></a>
+              </li>
+              <li className="flex">
+                <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 text-white font-bold text-lg"> <NavLink
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+
+                  to="/register">Register</NavLink></a>
+              </li>
+              <li className="flex">
+                <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 text-white font-bold text-lg">    <NavLink to="/createAssignment">Create Assignment</NavLink></a>
+              </li>
+              <li className="flex">
+                <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent  text-white font-bold text-lg"> <NavLink to="/allAssignments">All Assignment</NavLink></a>
+              </li>
+              <li className="flex">
+                <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white font-bold text-lg"> <NavLink to="/submittedAssignments">Submitted Assignment</NavLink></a>
+              </li>
+              {
+                user?.email ? <li className="flex">
+                  <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white font-bold text-lg"> <NavLink to="/myAssignments">My Assignments</NavLink></a>
+                </li> : ''
+              }
+            </ul>
           </div>
           <div className="items-center mt-3 justify-center flex-shrink-0 lg:flex ml-16">
             {user && (
@@ -85,7 +90,7 @@ const NavBar = () => {
                   className="  btn hover:bg-gradient-to-r from-[#3940D6] to-[#7F1D9B] mx-auto text-black border-none rounded-none
                  bg-white w-[30%] md:w-[50%] pt-3 pb-2"
                 >
-                 Log Out
+                  Log Out
                 </button>
               </div>
             )}
@@ -97,9 +102,9 @@ const NavBar = () => {
             )}
           </div>
         </div>
-         
-          
-      
+
+
+
         {isMenuOpen && (
           <ul className="lg:hidden bg-gray-200 p-3">
             <li>
@@ -117,6 +122,11 @@ const NavBar = () => {
             <li>
               <NavLink to="/submittedAssignments">Submitted Assignments</NavLink>
             </li>
+            {
+              user?.email ? <li>
+                <NavLink to="//myAssignments">Submitted Assignments</NavLink>
+              </li> : ''
+            }
             <li>
               <NavLink to="/marked">Marked Assignment</NavLink>
             </li>

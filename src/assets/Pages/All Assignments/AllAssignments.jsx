@@ -7,6 +7,18 @@ const AllAssignments = () => {
     const [assignments, setAssignments] = useState(AllAssignments)
 
     const [searchLevel, setSearchLevel] = useState('all')
+    const [currentPage, setCurrentPage] = useState(1);
+const assignmentsPerPage = 5;
+
+const indexOfLastAssignment = currentPage * assignmentsPerPage;
+const indexOfFirstAssignment = indexOfLastAssignment - assignmentsPerPage;
+const currentAssignments = assignments.slice(indexOfFirstAssignment, indexOfLastAssignment);
+
+const totalPages = Math.ceil(assignments.length / assignmentsPerPage);
+
+const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+};
     console.log(assignments);
     const handleDeletedCount = (id) => {
         const remianingAssignments = assignments.filter(assignment => assignment._id !== id)
@@ -27,7 +39,7 @@ const AllAssignments = () => {
 
     return (
         <>
-        <div className='w-full my-4'>
+        <div className='w-full my-4 '>
         <label htmlFor="Searching" className='text-xl font-semibold mr-4'> Search by Difficulty Level</label>
         <select value={searchLevel} className='input bg-[#160733] text-white' onChange={e => {
             const selectedLevel = e.target.value;
@@ -43,7 +55,7 @@ const AllAssignments = () => {
 
         </select>
     </div>
-        <div className="overflow-x-auto bg-[#160733]  ">
+        <div className="overflow-x-auto bg-[#160733] mb-4  ">
 
           
             <table className="table text-white">
@@ -64,15 +76,14 @@ const AllAssignments = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        assignments.map(assignment => <SingleAssignmentCard
-                            key={assignment._id}
+                {currentAssignments.map((assignment) => (
+    <SingleAssignmentCard
+        key={assignment._id}
+        assignment={assignment}
+        handleDeletedCount={handleDeletedCount}
+    />
+))}
 
-
-                            assignment={assignment}
-                            handleDeletedCount={handleDeletedCount}
-                        ></SingleAssignmentCard>)
-                    }
 
 
 
@@ -80,7 +91,50 @@ const AllAssignments = () => {
 
 
             </table>
-        </div></>
+
+
+        </div>
+        
+        
+
+
+        <div className="flex justify-center space-x-1 dark:text-gray-100">
+    <button
+        title="previous"
+        type="button"
+        className="inline-flex items-center justify-center p-6 w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800"
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        
+    >
+       Prev
+    </button>
+
+    {Array.from({ length: totalPages }, (_, index) => (
+        <button
+            key={index + 1}
+            type="button"
+            className={`inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-900 dark:text-violet-400 dark:border-violet-400 ${
+                currentPage === index + 1 ? 'bg-gray-600 text-white' : ''
+            }`}
+            onClick={() => handlePageChange(index + 1)}
+        >
+            {index + 1}
+        </button>
+    ))}
+
+    <button
+        title="next"
+        type="button"
+        className="inline-flex items-center justify-center w-8 h-8 py-0 border p-6 rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800"
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+    >Next
+    </button>
+</div>
+
+
+</>
     );
 };
 

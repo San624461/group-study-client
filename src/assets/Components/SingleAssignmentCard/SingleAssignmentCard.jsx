@@ -25,7 +25,7 @@ const SingleAssignmentCard = ({ assignment, handleDeletedCount, props }) => {
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments/${id}`, {
+                    fetch(`https://group-study-server-dusky.vercel.app/createdAssignments/${id}`, {
                         method: 'DELETE'
                     })
                         .then((res) => res.json())
