@@ -6,19 +6,48 @@ const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    
+
     const [loading, setLoading] = useState(true)
-   const createUser = (email,password)=>{
-    return createUserWithEmailAndPassword(auth,email,password)
-   }
+    const createUser = async (email, password, displayName, photoURL) => {
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+          // Update the user's profile with displayName and photoURL
+          await updateProfile(userCredential.user, {
+            displayName,
+            photoURL,
+          });
+      
+          // Reload the page after successful registration
+        //   window.location.reload();
+      
+          // Return the UserCredential object
+          return userCredential;
+        } catch (error) {
+          console.error(error);
+          throw error; // Re-throw the error to be caught in the catch block of the calling function
+        }
+      };
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
+        .then(() => {
+            window.location.reload()
+        })
+        .catch((error) => {
+            console.error(error);
+        })
     }
 
     const signIn = (email, password) => {
         setLoading(false)
         return signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            window.location.reload()
+        })
+        .catch((error) => {
+            console.error(error);
+        })
     }
 
     const logOut = () => {
@@ -37,13 +66,13 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const authInfo = {
-      
+
         createUser,
         logOut,
         signIn,
         googleLogin,
         loading,
-          user,
+        user,
     }
     return (
         <AuthContext.Provider value={authInfo}>

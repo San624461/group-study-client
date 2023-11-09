@@ -14,10 +14,10 @@ const Register = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // const reloadWebsite = () => {
+  const reloadWebsite = () => {
 
-  //   window.location.reload();
-  // };
+    window.location.reload();
+  };
   const handleRegister = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -45,23 +45,34 @@ const Register = () => {
         const res = await createUser(email, password, name, photo);
         console.log(res);
         if (res && res.user) {
-          Swal.fire('Success!', 'User registered successfully.', 'success');
-          // reloadWebsite()
-          
-
-        } else {
-
-          console.error('User data not available');
+          Swal.fire({
+            title: 'Success!',
+            text: 'User registered successfully.',
+            icon: 'success',
+            confirmButtonText: 'Cool'
+          })
+          // .then(() => {
+          //   // Reload the website after the success message is shown
+          //   window.location.reload();
+          // });
+         
+          navigate(location?.state ? location.state : '/');
         }
-
-        navigate(location?.state ? location.state : '/');
       } catch (err) {
         setError(err.message);
-        Swal.fire('Error!', err.message, 'error');
+        Swal.fire({
+          title: 'Error!',
+          text: err.message,
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        });
       } finally {
         setIsSubmitting(false);
+     
+       
       }
-
+      reloadWebsite();
+    
     }
   }
 

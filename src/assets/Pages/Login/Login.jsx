@@ -8,9 +8,9 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
 
-    const { signIn, googleLogin } = useContext(AuthContext);
+    const { signIn, googleLogin,user } = useContext(AuthContext);
 
-
+console.log(user);
     const [error, setError] = useState('');
     const location = useLocation()
     const navigate = useNavigate()
