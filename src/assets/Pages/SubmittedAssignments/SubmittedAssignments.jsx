@@ -7,7 +7,7 @@ const SubmittedAssignments = () => {
     const [assignments, setSubmittedAssignments] = useState([])
 
     useEffect(() => {
-        fetch('https://group-study-server-dusky.vercel.app/submittedAssignments')
+        fetch('https://group-study-server-dusky.svercel.app/submittedAssignments')
         .then( res=>res.json())
         .then(data => setSubmittedAssignments(data))
     }, [])
