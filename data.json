@@ -1,0 +1,51 @@
+[
+    {
+      "title": "History Essay",
+      "description": "Write a 5-page essay on the impact of the Renaissance on European history.",
+      "marks": 100,
+      "thumbnailImageUrl": "https://i.ibb.co/mrjHm3c/pexels-yerzhan-kamalov-12278950-1.jpg",
+      "difficultyLevel": "medium",
+      "dueDate": "2023-12-15"
+    },
+    {
+      "title": "Math Quiz",
+      "description": "Solve 20 complex mathematical problems.",
+      "marks": 80,
+      "thumbnailImageUrl": "https://i.ibb.co/VML4Zk2/pexels-nothing-ahead-3729557.jpg",
+      "difficultyLevel": "hard",
+      "dueDate": "2023-12-10"
+    },
+    {
+      "title": "Literature Analysis",
+      "description": "Analyzing a selected poem from the Romantic era.",
+      "marks": 90,
+      "thumbnailImageUrl": "https://example.com/lit-analysis-thumbnail.jpg",
+      "difficultyLevel": "easy",
+      "dueDate": "2023-12-18"
+    },
+    {
+      "title": "Programming Assignment",
+      "description": "Develop a simple web application using HTML, CSS, and JavaScript.",
+      "marks": 120,
+      "thumbnailImageUrl": "https://example.com/programming-assignment-thumbnail.jpg",
+      "difficultyLevel": "medium",
+      "dueDate": "2023-12-12"
+    },
+    {
+      "title": "Chemistry Experiment",
+      "description": "Conduct an experiment to demonstrate a chemical reaction.",
+      "marks": 95,
+      "thumbnailImageUrl": "https://example.com/chemistry-experiment-thumbnail.jpg",
+      "difficultyLevel": "hard",
+      "dueDate": "2023-12-14"
+    },
+    {
+      "title": "Physical Education Challenge",
+      "description": "Complete a 5K run or a fitness challenge of your choice.",
+      "marks": 75,
+      "thumbnailImageUrl": "https://example.com/pe-challenge-thumbnail.jpg",
+      "difficultyLevel": "easy",
+      "dueDate": "2023-12-20"
+    }
+  ]
+  

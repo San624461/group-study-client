@@ -9,11 +9,12 @@ const Footer = () => {
 			<a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 lg:justify-start">
 				<div className="flex items-center justify-center w-12 h-12 rounded-full dark:bg-violet-400">
 					<img src="https://assets-global.website-files.com/63a9fb94e473f36dbe99c1b1/652e8a149bed1cb856d44854_64a2fa3c9a18a98054051689_rxrFjodrRzS4qfiDoJ9K.svg" alt="" />
+					
 				</div>
-			
+				<span className="self-center text-2xl font-semibold text-purple-500">StudySync</span>
                
 			</a>
-            <span className="self-center text-2xl font-semibold text-purple-500">StudySync</span>
+           
 		</div>
 		<div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
 			<div className="space-y-3">
