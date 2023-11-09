@@ -14,8 +14,9 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import SubmittedAssignments from "../Pages/SubmittedAssignments/SubmittedAssignments";
 import Marking from "../Pages/Marking/Marking";
 // import MarksAssignments from "../Pages/MarkedAssingments/MarkedAssignments";
-import { FcEditImage } from "react-icons/fc";
+// import { FcEditImage } from "react-icons/fc";
 import MarkedAssignments from "../Pages/MarkedAssingments/MarkedAssignments";
+import PrivateRoute from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -30,12 +31,12 @@ const router = createBrowserRouter([
 
             {
                 path:'/createAssignment',
-                element:<CreateAssignment></CreateAssignment>
+                element:<PrivateRoute><CreateAssignment></CreateAssignment></PrivateRoute>
             },
             {
                 path:'/allAssignments',
                 element: <AllAssignments></AllAssignments>,
-                loader: ()=>fetch('http://localhost:5000/createdAssignments')
+                loader: ()=>fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments')
             },
             {
                 path: '/myAssignments',
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/submitted',
-                element: <SubmittedAssignments></SubmittedAssignments>
+                element: <PrivateRoute><SubmittedAssignments></SubmittedAssignments></PrivateRoute>
             },
             {
                 path:'/login',
@@ -55,25 +56,29 @@ const router = createBrowserRouter([
             },
             {
                 path:'/updateAssignment/:id',
-                element: <UpdateAssignment></UpdateAssignment>,
-                loader: ({params})=>fetch(`http://localhost:5000/createdAssignments/${params.id}`)
+                element: <PrivateRoute><UpdateAssignment></UpdateAssignment></PrivateRoute>,
+                loader: ({params})=>fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments/${params.id}`)
             },{
                 path: '/details/:id',
-                element:<Details></Details>,
-                loader: ({params})=>fetch(`http://localhost:5000/createdAssignments/${params.id}`)
+                element:<PrivateRoute>
+                    <Details></Details>
+                </PrivateRoute>,
+                loader: ({params})=>fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/createdAssignments/${params.id}`)
             },{
                 path: '/submittedAssignments',
-                element: <SubmittedAssignments></SubmittedAssignments>,
-                loader: ()=>fetch('http://localhost:5000/submittedAssignments')
+                element: <PrivateRoute>
+                    <SubmittedAssignments></SubmittedAssignments>
+                </PrivateRoute>,
+                loader: ()=>fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments')
             },{
                 path : '/marking/:id',
                 element: <Marking></Marking>,
-                loader: ({params})=>fetch(`http://localhost:5000/submittedAssignments/${params.id}`)
+                loader: ({params})=>fetch(`https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments/${params.id}`)
             },
             {
                 path: '/marked',
                 element:<MarkedAssignments></MarkedAssignments>,
-                loader: ()=>fetch('http://localhost:5000/submittedAssignments')
+                loader: ()=>fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments')
             }
         ]
     }

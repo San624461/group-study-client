@@ -34,7 +34,7 @@ const status = 'pending'
             fullMarks,
             name
         }
-        fetch('http://localhost:5000/submittedAssignments', {
+        fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/submittedAssignments', {
             method: 'POST',
             headers: {
                 'content-type' :'application/json'

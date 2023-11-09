@@ -6,7 +6,7 @@ const Featured = () => {
 
     const [datas, setData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/featured')
+        fetch('https://group-study-server-oga2e3zsk-sans-projects-f62f7a6a.vercel.app/featured')
             .then(res=>res.json())
             .then(data => {
                 setData(data)
@@ -15,7 +15,7 @@ const Featured = () => {
     console.log(datas);
     return (
         <div className='mt-4'>
-            <h1 className='text-center text-purple-400 text-3xl mb-4 font-bold'>Featured Assignments From Students</h1>
+            <h1 className='text-center text-purple-400 text-4xl mb-4 font-bold'>Featured Assignments From Students</h1>
 <div className=' mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
 
 {
