@@ -1,4 +1,4 @@
-Website Link : https://group-study-6b672.web.app/
+Website Link : [https://group-study-6b672.web.app/](https://lucent-sprinkles-2d7c12.netlify.app/)
 
 Features of this website
 
